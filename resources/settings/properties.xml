@@ -1,0 +1,5 @@
+<properties>
+    <property id="AccentColor" type="number">0xFF0000</property>
+    <property id="BackgroundColor" type="number">0x000000</property>
+    <property id="ShowBattery" type="boolean">true</property>
+</properties>

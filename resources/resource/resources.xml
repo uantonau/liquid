@@ -1,0 +1,5 @@
+<resources>
+    <fonts>
+		<font id="ZzzSmall" filename="fonts/zzz_small.fnt" filter="0123456789bfiotw" />
+    </fonts>
+</resources>
