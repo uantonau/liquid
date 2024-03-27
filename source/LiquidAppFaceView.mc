@@ -22,6 +22,7 @@ class LiquidAppFaceView extends WatchUi.WatchFace {
     var minuteHand;
     var hourHand;
     var dayOfWeek;
+    var dayOfMonth;
     var face;
 
     var minuteHandAngle;
@@ -40,6 +41,7 @@ class LiquidAppFaceView extends WatchUi.WatchFace {
     	secondHand = new SecondHand(dc.getWidth(), dc.getHeight());
     	minuteHand = new MinuteHand(dc.getWidth(), dc.getHeight());
     	dayOfWeek = new DayOfWeek(dc.getWidth(), dc.getHeight());
+    	dayOfMonth = new DayOfMonth(dc.getWidth(), dc.getHeight());
     	hourHand = new HourHand(dc.getWidth(), dc.getHeight());
     	face = new Face(dc.getWidth(), dc.getHeight());
 
@@ -73,6 +75,7 @@ class LiquidAppFaceView extends WatchUi.WatchFace {
     	var today = Gregorian.info(Time.now(), Time.FORMAT_SHORT);
 		var clockTime = today;
 		var dayOfWeekAngle;
+		var dayOfMonthAngle;
         var hourHandAngle;
         var secondHandAngle;
         var targetDc = null;
@@ -96,6 +99,7 @@ class LiquidAppFaceView extends WatchUi.WatchFace {
         hourHandAngle = (((clockTime.hour % 12) * 60) + clockTime.min);
         minuteHandAngle = (clockTime.min / 60.0) * PI * 2;
         dayOfWeekAngle = ((clockTime.day_of_week.toFloat() - 2) * 24 + clockTime.hour) / 24 * PI * 2 / 7;
+        dayOfMonthAngle = (clockTime.day.toFloat() / 60) * PI * 2 + PI;
 
         // Draw the hour hand. Convert it to minutes and compute the angle.
         hourHandAngle = hourHandAngle / (12 * 60.0);
@@ -109,6 +113,12 @@ class LiquidAppFaceView extends WatchUi.WatchFace {
 		// Draw day of week.
 		dayOfWeek.set(dayOfWeekAngle, minuteHandAngle);
 		dayOfWeek.draw(targetDc);
+		
+		// Draw day of month.
+		if (Application.getApp().getProperty("ShowDate")) {
+			dayOfMonth.set(dayOfMonthAngle);
+			dayOfMonth.draw(targetDc);
+		}
 		
 		// Draw Battery.
 		if (Application.getApp().getProperty("ShowBattery")) {
@@ -197,6 +207,7 @@ class LiquidAppFaceView extends WatchUi.WatchFace {
 		minuteHand.refreshColors();
 		hourHand.refreshColors();
 		dayOfWeek.refreshColors();
+		dayOfMonth.refreshColors();
 		battery.refreshColors();
 		face.refreshColors();
    	    

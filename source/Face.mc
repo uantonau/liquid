@@ -50,11 +50,11 @@ class Face {
     		} else if ( i % 10 == 0) {
     			if (i == 0) {
     				drawTickCircle(dc, sinA, cosA, accentColor);
-    			} else if (i == 30) {
-    				dc.setColor(accentColor,bgColor);
-    				dc.fillPolygon(bottomTriangle);
-    				dc.setColor(bgColor,bgColor);
-    				dc.fillCircle(bottomTriangleCircle[0], bottomTriangleCircle[1], bottomTriangleCircleRad);
+//    			} else if (i == 30) {
+//    				dc.setColor(accentColor,bgColor);
+//    				dc.fillPolygon(bottomTriangle);
+//    				dc.setColor(bgColor,bgColor);
+//    				dc.fillCircle(bottomTriangleCircle[0], bottomTriangleCircle[1], bottomTriangleCircleRad);
     			} else {
     		    	drawTickCircle(dc, sinA, cosA, ticksColor);
     		    }
